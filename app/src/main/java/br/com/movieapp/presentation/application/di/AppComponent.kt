@@ -1,5 +1,7 @@
 package br.com.movieapp.presentation.application.di
 
+import br.com.movieapp.presentation.home.di.MovieComponent
+import br.com.movieapp.presentation.home.di.MovieModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,5 +11,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(AppModule::class, NetworkModule::class))
 interface AppComponent{
-
+   fun plusMovie(module: MovieModule): MovieComponent
 }

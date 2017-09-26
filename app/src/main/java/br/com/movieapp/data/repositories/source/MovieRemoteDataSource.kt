@@ -7,11 +7,12 @@ import br.com.movieapp.domain.model.MovieResponse
 import io.reactivex.Single
 import retrofit2.HttpException
 import retrofit2.Retrofit
+import javax.inject.Inject
 
 /**
  * Created by pedrohenrique on 25/09/17.
  */
-class MovieRemoteDataSource constructor(private val retrofit: Retrofit): MovieDataSource {
+class MovieRemoteDataSource @Inject constructor(private val retrofit: Retrofit): MovieDataSource {
 
     override fun loadMovies(search: String): Single<MovieResponse> {
         return Single.create { e ->

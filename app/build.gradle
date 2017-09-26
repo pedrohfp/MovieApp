@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -26,23 +27,24 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testCompile 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0', { exclude group: 'org.jetbrains.kotlin' }
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.8.0', { exclude group: 'com.squareup.okio' }
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.google.dagger:dagger:2.11'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
-    kapt 'com.google.dagger:dagger-compiler:2.11'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.android.support:support-v4:26.+'
+    testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.4'
     testCompile 'org.robolectric:shadows-support-v4:3.0'
-    testCompile 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0', { exclude group: 'org.jetbrains.kotlin' }
-    testCompile 'com.squareup.okhttp3:mockwebserver:3.8.0', { exclude group: 'com.squareup.okio' }
-
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }
 repositories {
     mavenCentral()
