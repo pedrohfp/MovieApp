@@ -1,18 +1,15 @@
 package br.com.movieapp.presentation.home.adapter
 
 import android.content.Context
-import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.movieapp.R
-import br.com.movieapp.data.rest.Authenticator
 import br.com.movieapp.domain.model.Movie
-import br.com.movieapp.presentation.application.MovieApplication
 import com.squareup.picasso.Picasso
 
 /**
@@ -20,10 +17,19 @@ import com.squareup.picasso.Picasso
  */
 class MovieListAdapter(val context: Context): RecyclerView.Adapter<MovieListAdapter.ViewHolder>(){
 
+    interface OnDetailsItemClickListener{
+        fun onItemClick(id: Int)
+    }
+
     lateinit var movieList: ArrayList<Movie>
+    lateinit var detailsListener: OnDetailsItemClickListener
 
     fun setMovies(movies: ArrayList<Movie>){
         movieList = movies
+    }
+
+    fun setDetailsItemClick(listener: OnDetailsItemClickListener){
+        this.detailsListener = listener
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +37,7 @@ class MovieListAdapter(val context: Context): RecyclerView.Adapter<MovieListAdap
     }
 
     override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
-        holder.bindItems(movieList[position], context)
+        holder.bindItems(movieList[position], context, detailsListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MovieListAdapter.ViewHolder{
@@ -40,15 +46,19 @@ class MovieListAdapter(val context: Context): RecyclerView.Adapter<MovieListAdap
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bindItems(movie: Movie, context: Context){
+        fun bindItems(movie: Movie, context: Context, detailsListener: OnDetailsItemClickListener){
             val movieImageView = itemView.findViewById<ImageView>(R.id.movieImageView)
             val movieTitleTextView = itemView.findViewById<TextView>(R.id.movieTitleTextView)
             val movieDescriptionTextView = itemView.findViewById<TextView>(R.id.movieDescriptionTextView)
+            val btnDetails = itemView.findViewById<Button>(R.id.btnDetails)
 
-            val url = "https://image.tmdb.org/t/p/w500" + movie.posterPath
+            val url = "https://image.tmdb.org/t/p/w342" + movie.posterPath
             Picasso.with(context).load(url).into(movieImageView)
             movieTitleTextView.text = movie.title
             movieDescriptionTextView.text = movie.description
+            btnDetails.setOnClickListener({
+                detailsListener.onItemClick(movie.id)
+            })
         }
     }
 }

@@ -46,7 +46,7 @@ class MovieRepositoryTest {
         var movieResponse: MovieResponse? = null
         var error: Throwable? = null
 
-        mMovieRepository.loadMovies("The Avengers").subscribe({
+        mMovieRepository.loadMovies("The Avengers", 0).subscribe({
             t1: MovieResponse?, t2: Throwable? ->
 
             movieResponse = t1

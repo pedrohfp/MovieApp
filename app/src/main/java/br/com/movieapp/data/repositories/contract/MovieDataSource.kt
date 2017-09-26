@@ -1,5 +1,6 @@
 package br.com.movieapp.data.repositories.contract
 
+import br.com.movieapp.domain.model.MovieDetail
 import br.com.movieapp.domain.model.MovieResponse
 import io.reactivex.Single
 
@@ -8,4 +9,5 @@ import io.reactivex.Single
  */
 interface MovieDataSource{
     fun loadMovies(search: String, page: Int): Single<MovieResponse>
+    fun loadMovieDetails(movieId: Int): Single<MovieDetail>
 }

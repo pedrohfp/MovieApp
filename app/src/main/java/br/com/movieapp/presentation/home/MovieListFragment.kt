@@ -36,6 +36,7 @@ class MovieListFragment : Fragment(), MovieListView {
     //ScrollListener - EndlessRecyclerViewScrollListener
     private lateinit var mScrollListener: EndlessRecyclerViewScrollListener
 
+    //Search Text from Search View
     private var mSearchText = ""
 
     companion object {
@@ -58,6 +59,12 @@ class MovieListFragment : Fragment(), MovieListView {
 
         mAdapter = MovieListAdapter(activity)
         mAdapter.setMovies(arrayListOf())
+
+        mAdapter.setDetailsItemClick(object: MovieListAdapter.OnDetailsItemClickListener{
+            override fun onItemClick(id: Int) {
+                Toast.makeText(activity, "clicou no " + id, Toast.LENGTH_LONG).show()
+            }
+        })
 
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = layoutManager
@@ -101,6 +108,12 @@ class MovieListFragment : Fragment(), MovieListView {
 
         mAdapter.movieList.addAll(movieResponse.movieList)
         mAdapter.notifyDataSetChanged()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+
+        super.onSaveInstanceState(outState)
+
     }
 
 }

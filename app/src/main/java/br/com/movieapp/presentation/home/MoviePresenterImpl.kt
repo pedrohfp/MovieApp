@@ -1,7 +1,6 @@
 package br.com.movieapp.presentation.home
 
 import br.com.movieapp.domain.interactor.LoadMoviesUseCase
-import br.com.movieapp.domain.interactor.base.SingleUseCase
 import br.com.movieapp.domain.model.MovieResponse
 import br.com.movieapp.presentation.home.contract.MainActivityView
 import br.com.movieapp.presentation.home.contract.MovieListView
