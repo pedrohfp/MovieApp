@@ -14,12 +14,12 @@ import javax.inject.Inject
  */
 class MovieRemoteDataSource @Inject constructor(private val retrofit: Retrofit): MovieDataSource {
 
-    override fun loadMovies(search: String): Single<MovieResponse> {
+    override fun loadMovies(search: String, page: Int): Single<MovieResponse> {
         return Single.create { e ->
             try{
                 val movieApi = retrofit.create(MovieApi::class.java)
 
-                val callBody = movieApi.loadMovies(Authenticator.apiKey, search)
+                val callBody = movieApi.loadMovies(Authenticator.apiKey, search, page)
 
                 val responseBody = callBody.execute()
 

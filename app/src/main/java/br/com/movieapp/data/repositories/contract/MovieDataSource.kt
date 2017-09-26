@@ -7,5 +7,5 @@ import io.reactivex.Single
  * Created by pedrohenrique on 25/09/17.
  */
 interface MovieDataSource{
-    fun loadMovies(search: String): Single<MovieResponse>
+    fun loadMovies(search: String, page: Int): Single<MovieResponse>
 }

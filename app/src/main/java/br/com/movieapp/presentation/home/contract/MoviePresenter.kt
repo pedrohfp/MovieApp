@@ -5,4 +5,6 @@ import br.com.movieapp.presentation.base.BasePresenter
 /**
  * Created by pedrohenrique on 25/09/17.
  */
-interface MoviePresenter : BasePresenter
+interface MoviePresenter : BasePresenter{
+    fun loadMovies(search: String, page: Int)
+}

@@ -10,14 +10,14 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by pedrohenrique on 25/09/17.
  */
-abstract class SingleUseCase<T, in Params>{
+abstract class SingleUseCase<T, in FirstParams, in SecondParams>{
 
     var disposables: CompositeDisposable = CompositeDisposable()
 
     /**
      * Builds an [Single] which will be used when executing the current [UseCase].
      */
-    internal abstract fun getSingle(params: Params): Single<T>
+    internal abstract fun getSingle(params: FirstParams, secondParams: SecondParams): Single<T>
 
     /**
      * Executes the current use case.
@@ -26,8 +26,8 @@ abstract class SingleUseCase<T, in Params>{
      * by [.execute] ()} method.
      * @param params Parameters (Optional) used to build/execute this use case.
      */
-    fun execute(observer: DisposableSingleObserver<T>, params: Params) {
-        val single = this.getSingle(params)
+    fun execute(observer: DisposableSingleObserver<T>, params: FirstParams, secondParams: SecondParams) {
+        val single = this.getSingle(params, secondParams)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
         addDisposable(single.subscribeWith(observer))

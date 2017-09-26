@@ -9,9 +9,10 @@ import javax.inject.Inject
 /**
  * Created by pedrohenrique on 25/09/17.
  */
-class LoadMoviesUseCase @Inject constructor(val movieRepository: MovieRepository): SingleUseCase<MovieResponse, String>(){
-    override fun getSingle(params: String): Single<MovieResponse> {
-        return movieRepository.loadMovies(params)
+class LoadMoviesUseCase @Inject constructor(val movieRepository: MovieRepository): SingleUseCase<MovieResponse, String, Int>(){
+    override fun getSingle(params: String, secondParams: Int): Single<MovieResponse> {
+        return movieRepository.loadMovies(params, secondParams)
     }
+
 
 }

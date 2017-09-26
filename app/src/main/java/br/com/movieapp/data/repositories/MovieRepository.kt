@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Created by pedrohenrique on 25/09/17.
  */
 class MovieRepository @Inject constructor(private val movieRemoteDataSource: MovieDataSource): MovieDataSource{
-    override fun loadMovies(search: String): Single<MovieResponse> {
-        return movieRemoteDataSource.loadMovies(search)
+    override fun loadMovies(search: String, page: Int): Single<MovieResponse> {
+        return movieRemoteDataSource.loadMovies(search, page)
     }
 }

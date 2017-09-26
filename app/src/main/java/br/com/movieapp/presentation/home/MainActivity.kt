@@ -37,6 +37,7 @@ class MainActivity : MainActivityView() {
         MovieApplication.mAppComponent
                 .plusMovie(MovieModule(this, mMovieListFragment!!))
                 .inject(this)
+
     }
 
     @Inject

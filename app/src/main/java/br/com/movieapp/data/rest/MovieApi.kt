@@ -10,6 +10,6 @@ import retrofit2.http.Query
  * Created by pedrohenrique on 25/09/17.
  */
 interface MovieApi{
-    @GET("/search/movie")
-    fun loadMovies(@Query("apiKey") apiKey: String, @Query("search") search: String): Call<MovieResponse>
+    @GET("search/movie")
+    fun loadMovies(@Query("api_key") apiKey: String, @Query("query") search: String, @Query("page") page: Int): Call<MovieResponse>
 }

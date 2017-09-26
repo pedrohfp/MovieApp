@@ -18,7 +18,6 @@ class MovieApplication: Application(){
 
     override fun onCreate() {
         super.onCreate()
-        //https://api.themoviedb.org/3/movie/550?api_key=7c8de234c261253cdbc07d7ff774a9dc
         mAppComponent = initDagger()
     }
 
