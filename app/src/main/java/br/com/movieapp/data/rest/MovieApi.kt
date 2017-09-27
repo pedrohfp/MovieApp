@@ -15,5 +15,5 @@ interface MovieApi{
     fun loadMovies(@Query("api_key") apiKey: String, @Query("query") search: String, @Query("page") page: Int): Call<MovieResponse>
 
     @GET("movie/{movie_id}")
-    fun loadMovieDetails(@Query("api_key") apiKey: String, @Path("movie_id") movieId: Int): Call<MovieDetail>
+    fun loadMovieDetails(@Path("movie_id") movieId: Int, @Query("api_key") apiKey: String): Call<MovieDetail>
 }

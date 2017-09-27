@@ -6,8 +6,6 @@ import br.com.movieapp.domain.interactor.LoadMovieDetailsUseCase
 import br.com.movieapp.presentation.details.MovieDetailsPresenterImpl
 import br.com.movieapp.presentation.details.contract.MovieDetailsActivityView
 import br.com.movieapp.presentation.details.contract.MovieDetailsPresenter
-import br.com.movieapp.presentation.details.contract.MovieDetailsView
-import br.com.movieapp.presentation.home.contract.MainActivityView
 import br.com.movieapp.presentation.utils.ActivityScoped
 import dagger.Module
 import dagger.Provides
@@ -17,17 +15,11 @@ import retrofit2.Retrofit
  * Created by pedrohenrique on 26/09/17.
  */
 @Module
-class MovieDetailsModule constructor(val activityView: MovieDetailsActivityView, val movieDetailsView: MovieDetailsView){
+class MovieDetailsModule constructor(val activityView: MovieDetailsActivityView){
     @ActivityScoped
     @Provides
     fun provideMovieDetailsActivityView(): MovieDetailsActivityView{
         return activityView
-    }
-
-    @ActivityScoped
-    @Provides
-    fun provideMovieDetailsView(): MovieDetailsView{
-        return movieDetailsView
     }
 
     @ActivityScoped

@@ -41,7 +41,7 @@ class MovieRemoteDataSource @Inject constructor(private val retrofit: Retrofit):
             try{
                 val movieApi = retrofit.create(MovieApi::class.java)
 
-                val callBody = movieApi.loadMovieDetails(Authenticator.apiKey, movieId)
+                val callBody = movieApi.loadMovieDetails(movieId, Authenticator.apiKey)
 
                 val responseBody = callBody.execute()
 

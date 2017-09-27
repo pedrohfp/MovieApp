@@ -52,7 +52,7 @@ class MovieListAdapter(val context: Context): RecyclerView.Adapter<MovieListAdap
             val movieDescriptionTextView = itemView.findViewById<TextView>(R.id.movieDescriptionTextView)
             val btnDetails = itemView.findViewById<Button>(R.id.btnDetails)
 
-            val url = "https://image.tmdb.org/t/p/w342" + movie.posterPath
+            val url = "https://image.tmdb.org/t/p/w780" + movie.posterPath
             Picasso.with(context).load(url).into(movieImageView)
             movieTitleTextView.text = movie.title
             movieDescriptionTextView.text = movie.description

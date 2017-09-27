@@ -1,6 +1,7 @@
 package br.com.movieapp.presentation.home
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import android.widget.Toast
 
 import br.com.movieapp.R
 import br.com.movieapp.domain.model.MovieResponse
+import br.com.movieapp.presentation.details.MovieDetailsActivity
 import br.com.movieapp.presentation.home.adapter.MovieListAdapter
 import br.com.movieapp.presentation.home.contract.MovieListView
 import br.com.movieapp.presentation.home.contract.MoviePresenter
@@ -39,7 +41,11 @@ class MovieListFragment : Fragment(), MovieListView {
     //Search Text from Search View
     private var mSearchText = ""
 
+
     companion object {
+
+        val MOVIE_ID = "movie_id"
+
         @JvmStatic
         fun newInstance(): MovieListFragment {
             return MovieListFragment()
@@ -62,7 +68,11 @@ class MovieListFragment : Fragment(), MovieListView {
 
         mAdapter.setDetailsItemClick(object: MovieListAdapter.OnDetailsItemClickListener{
             override fun onItemClick(id: Int) {
-                Toast.makeText(activity, "clicou no " + id, Toast.LENGTH_LONG).show()
+                val bundle = Bundle()
+                bundle.putInt(MOVIE_ID, id)
+                val intent = Intent(activity, MovieDetailsActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         })
 

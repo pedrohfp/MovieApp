@@ -15,19 +15,19 @@ class MovieDetail(@SerializedName("adult") var adult: Boolean?,
                   @SerializedName("overview") var overview: String?,
                   @SerializedName("popularity") var popularity: Double?,
                   @SerializedName("poster_path") var posterPath: String?,
-                  @SerializedName("production_companies") var productionCompanies: ProductionCompanies?,
+                  @SerializedName("production_companies") var productionCompanies: ArrayList<ProductionCompanies>?,
                   @SerializedName("release_date") var releaseDate: String?,
                   @SerializedName("status") var status: String?,
                   @SerializedName("tagline") var tagline: String?,
-                  @SerializedName("title") var title: String?) {
+                  @SerializedName("title") var title: String?,
+                  @SerializedName("vote_average") var rating: Float?) {
 
 
     override fun toString(): String {
         return "MovieDetail(adult=$adult, " +
                 "backdropPath=$backdropPath, " +
                 "genresList=$genresList, " +
-                "homepage=$homepage, " +
-                "id=$id, " +
+                "homepage=$homepage, id=$id, " +
                 "originalLanguage=$originalLanguage, " +
                 "originalTitle=$originalTitle, " +
                 "overview=$overview, " +
@@ -37,6 +37,7 @@ class MovieDetail(@SerializedName("adult") var adult: Boolean?,
                 "releaseDate=$releaseDate, " +
                 "status=$status, " +
                 "tagline=$tagline, " +
-                "title=$title)"
+                "title=$title, " +
+                "rating=$rating)"
     }
 }
