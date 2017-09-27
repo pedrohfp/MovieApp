@@ -44,4 +44,9 @@ class MainActivity : MainActivityView() {
     override fun setPresenter(presenter: MoviePresenter) {
         mPresenter = presenter
     }
+
+    override fun onDestroy() {
+        mPresenter.finish()
+        super.onDestroy()
+    }
 }

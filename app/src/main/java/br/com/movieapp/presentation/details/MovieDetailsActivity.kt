@@ -86,7 +86,7 @@ class MovieDetailsActivity : MovieDetailsActivityView() {
     }
 
     override fun showMovieDetails(details: MovieDetail) {
-        val url = "https://image.tmdb.org/t/p/w780" + details.backdropPath
+        val url = MovieApplication.mImageBaseUrl + "/w780" + details.backdropPath
         Picasso.with(this).load(url).into(detailsImageView)
 
         if(details.homepage!!.isEmpty()){
@@ -115,7 +115,11 @@ class MovieDetailsActivity : MovieDetailsActivityView() {
         mAdapter.notifyDataSetChanged()
 
         if(details.productionCompanies!!.size != 0) {
-            mCompanyAdapter.companyList.addAll(details.productionCompanies!!)
+            if(details.productionCompanies!!.size < 3) {
+                mCompanyAdapter.companyList.addAll(details.productionCompanies!!)
+            }else{
+                mCompanyAdapter.companyList.addAll(details.productionCompanies!!.subList(0, 2))
+            }
             mCompanyAdapter.notifyDataSetChanged()
         }else{
             productionCompaniesTitleTextView.visibility = View.GONE
@@ -124,5 +128,10 @@ class MovieDetailsActivity : MovieDetailsActivityView() {
 
         detailsFrameLayout.visibility = View.VISIBLE
         progressFrameLayout.visibility = View.GONE
+    }
+
+    override fun onDestroy() {
+        mPresenter.finish()
+        super.onDestroy()
     }
 }

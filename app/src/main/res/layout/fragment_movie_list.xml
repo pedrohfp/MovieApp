@@ -6,7 +6,7 @@
     tools:context="br.com.movieapp.presentation.home.MovieListFragment">
 
 
-    <SearchView
+    <android.support.v7.widget.SearchView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"

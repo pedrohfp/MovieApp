@@ -27,11 +27,6 @@ class MoviePresenterImpl: MoviePresenter {
         mMovieListView.setPresenter(this)
     }
 
-
-    override fun start() {
-
-    }
-
     override fun loadMovies(search: String, page: Int) {
         mLoadMoviesUseCase.execute(object: DisposableSingleObserver<MovieResponse>(){
             override fun onSuccess(t: MovieResponse) {

@@ -1,6 +1,6 @@
 package br.com.movieapp.presentation.utils
 
-import android.widget.SearchView
+import android.support.v7.widget.SearchView
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 

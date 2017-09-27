@@ -24,10 +24,6 @@ class MovieDetailsPresenterImpl : MovieDetailsPresenter {
         mActivityView.setPresenter(this)
     }
 
-    override fun start() {
-
-    }
-
     override fun loadMovieDetails(movieId: Int) {
         loadMovieDetailsUseCase.execute(object : DisposableSingleObserver<MovieDetail>(){
             override fun onSuccess(t: MovieDetail) {

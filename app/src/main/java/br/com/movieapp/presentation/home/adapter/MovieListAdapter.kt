@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.movieapp.R
 import br.com.movieapp.domain.model.Movie
+import br.com.movieapp.presentation.application.MovieApplication
 import com.squareup.picasso.Picasso
 
 /**
@@ -62,7 +63,7 @@ class MovieListAdapter(private val context: Context): RecyclerView.Adapter<Movie
             val btnDetails = itemView.findViewById<Button>(R.id.btnDetails)
             val btnShare = itemView.findViewById<Button>(R.id.btnShare)
 
-            val url = "https://image.tmdb.org/t/p/w780" + movie.posterPath
+            val url = MovieApplication.mImageBaseUrl + "/w780" + movie.posterPath
             Picasso.with(context).load(url).into(movieImageView)
             movieTitleTextView.text = movie.title
             movieDescriptionTextView.text = movie.description

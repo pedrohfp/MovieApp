@@ -16,6 +16,7 @@ import android.widget.Toast
 import br.com.movieapp.R
 import br.com.movieapp.domain.model.Movie
 import br.com.movieapp.domain.model.MovieResponse
+import br.com.movieapp.presentation.application.MovieApplication
 import br.com.movieapp.presentation.details.MovieDetailsActivity
 import br.com.movieapp.presentation.home.adapter.MovieListAdapter
 import br.com.movieapp.presentation.home.contract.MovieListView
@@ -83,13 +84,13 @@ class MovieListFragment : Fragment(), MovieListView {
             override fun onItemClick(movie: Movie) {
                 val sendIntent = Intent()
 
-                val url = "https://image.tmdb.org/t/p/w780" + movie.posterPath
+                val url = MovieApplication.mImageBaseUrl + "/w780" + movie.posterPath
 
 
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra(Intent.EXTRA_TEXT, url)
                 sendIntent.type = "text/plain"
-                startActivity(Intent.createChooser(sendIntent, "Envie para alguém"))
+                startActivity(Intent.createChooser(sendIntent, getString(R.string.share)))
             }
         })
 

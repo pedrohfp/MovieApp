@@ -94,7 +94,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@null"
                     android:padding="8dp"
-                    android:text="@string/compartilhar" />
+                    android:text="@string/share" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
 
