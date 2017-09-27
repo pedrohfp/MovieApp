@@ -2,6 +2,7 @@ package br.com.movieapp.presentation.home
 
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 
 import br.com.movieapp.R
+import br.com.movieapp.domain.model.Movie
 import br.com.movieapp.domain.model.MovieResponse
 import br.com.movieapp.presentation.details.MovieDetailsActivity
 import br.com.movieapp.presentation.home.adapter.MovieListAdapter
@@ -20,6 +22,7 @@ import br.com.movieapp.presentation.home.contract.MovieListView
 import br.com.movieapp.presentation.home.contract.MoviePresenter
 import br.com.movieapp.presentation.utils.EndlessRecyclerViewScrollListener
 import br.com.movieapp.presentation.utils.RxSearch
+import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.concurrent.TimeUnit
@@ -73,6 +76,20 @@ class MovieListFragment : Fragment(), MovieListView {
                 val intent = Intent(activity, MovieDetailsActivity::class.java)
                 intent.putExtras(bundle)
                 startActivity(intent)
+            }
+        })
+
+        mAdapter.setShareItemClick(object: MovieListAdapter.OnShareItemClickListener{
+            override fun onItemClick(movie: Movie) {
+                val sendIntent = Intent()
+
+                val url = "https://image.tmdb.org/t/p/w780" + movie.posterPath
+
+
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, url)
+                sendIntent.type = "text/plain"
+                startActivity(Intent.createChooser(sendIntent, "Envie para alguém"))
             }
         })
 
